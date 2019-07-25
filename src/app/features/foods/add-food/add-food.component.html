@@ -1,0 +1,29 @@
+<form ngForm #foodsForm class="form">
+  <mat-form-field>
+    <input
+      matInput
+      [(ngModel)]="name"
+      name="name"
+      placeholder="enter food name"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      matInput
+      [matDatepicker]="datePicker"
+      [(ngModel)]="dueDate"
+      name="name"
+      placeholder="enter due date"
+    />
+    <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+    <mat-datepicker #datePicker></mat-datepicker>
+  </mat-form-field>
+
+  <button
+    mat-stroked-button
+    color="primary"
+    (click)="onSubmit(); foodsForm.reset()"
+  >
+    Add Food
+  </button>
+</form>
