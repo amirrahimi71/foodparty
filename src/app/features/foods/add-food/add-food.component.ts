@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Food } from '../food';
+import { FoodsService } from 'src/app/services/foods.service';
 
 @Component({
   selector: 'app-add-food',
@@ -9,12 +10,10 @@ import { Food } from '../food';
 export class AddFoodComponent implements OnInit {
   name: string;
   dueDate: Date;
-  @Output() newFood = new EventEmitter<Food>();
 
-  constructor() { }
+  constructor(private foodService: FoodsService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onSubmit() {
     const food = new Food();
@@ -22,6 +21,7 @@ export class AddFoodComponent implements OnInit {
     food.dueDate = this.dueDate;
     food.submitted = false;
 
-    this.newFood.emit(food);
+    this.foodService.addFood(food)
+      .subscribe(msg => console.log(msg));
   }
 }

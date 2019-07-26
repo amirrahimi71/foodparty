@@ -9,11 +9,13 @@ import { LoggingService } from './logging.service';
 export class FoodsService {
   foods: Food[] = [
     {
+      id: 1,
       name: 'sandwich',
       dueDate: new Date('2018-01-01'),
       submitted: true
     },
     {
+      id: 2,
       name: 'pizza',
       dueDate: new Date('2019-01-01'),
       submitted: false
@@ -26,7 +28,13 @@ export class FoodsService {
     return of(this.foods);
   }
 
+  getFood(id: number): Observable<Food> {
+    return of(this.foods.find(x => x.id === id));
+  }
+
   addFood(food: Food): Observable<string> {
+    food.id = Math.max.apply(Math , this.foods.map((food) => food.id)) + 1;
+
     this.foods.push(food);
 
     this.logService.log(food.name, 'added');
@@ -34,7 +42,7 @@ export class FoodsService {
   }
 
   updateFood(food: Food): Observable<string> {
-    this.foods.forEach((item , index) => {
+    this.foods.forEach((item, index) => {
       if (food === item) {
         this.foods[index] = food;
       }
@@ -44,7 +52,7 @@ export class FoodsService {
   }
 
   deleteFood(food: Food): Observable<string> {
-    this.foods.forEach((item , index) => {
+    this.foods.forEach((item, index) => {
       if (food === item) {
         this.foods.splice(index, 1);
       }
@@ -52,5 +60,4 @@ export class FoodsService {
     this.logService.log(food.name, 'deleted');
     return of('food deleted!');
   }
-
 }

@@ -9,7 +9,6 @@ import { FoodsService } from 'src/app/services/foods.service';
 })
 export class FoodsComponent implements OnInit {
   formVisible = false;
-  selectedFood: Food;
   foods: Food[];
 
   constructor(private foodService: FoodsService) {}
@@ -21,20 +20,5 @@ export class FoodsComponent implements OnInit {
   getFoods() {
     this.foodService.getFoods()
     .subscribe(foods => this.foods = foods);
-  }
-
-  setSelected(food: Food) {
-    this.selectedFood = food;
-  }
-
-  onAddBtnClick() {
-    this.formVisible = true;
-    this.selectedFood = null;
-  }
-
-  onNewFood(food: Food) {
-    this.foodService.addFood(food)
-      .subscribe(msg => console.log(msg));
-    this.formVisible = false;
   }
 }

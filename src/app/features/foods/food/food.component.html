@@ -1,13 +1,13 @@
-<div class="container" *ngIf="passedFood">
+<div class="container">
   <mat-card color="accent">
     <mat-card-header>
-      <mat-card-title>{{passedFood.name}}</mat-card-title>
-      <mat-card-subtitle>{{passedFood.dueDate | date}}</mat-card-subtitle>
+      <mat-card-title>{{food.name}}</mat-card-title>
+      <mat-card-subtitle>{{food.dueDate | date}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <div class="btnBox">
-        <mat-checkbox *ngIf="!passedFood.submitted" (click)="onSubmit();">mark as submitted</mat-checkbox>
-        <button mat-flat-button color="warn" (click)="onDelete()">Delete</button>
+        <mat-checkbox *ngIf="!food.submitted" (click)="onSubmit();">mark as submitted</mat-checkbox>
+        <button mat-flat-button color="warn" (click)="onDelete();">Delete</button>
       </div>
     </mat-card-content>
   </mat-card>

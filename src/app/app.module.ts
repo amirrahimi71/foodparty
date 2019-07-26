@@ -12,6 +12,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FoodComponent } from './features/foods/food/food.component';
 import { AddFoodComponent } from './features/foods/add-food/add-food.component';
 import { FoodsService } from './services/foods.service';
+import { Routes, RouterModule } from '@angular/router';
+
+const routes: Routes = [
+  {path: '' , component: FoodsComponent},
+  {path: 'home' , component: FoodsComponent},
+  {path: 'add' , component: AddFoodComponent},
+  {path: 'foods/:id' , component: FoodComponent}
+];
 
 @NgModule({
   declarations: [
@@ -34,7 +42,8 @@ import { FoodsService } from './services/foods.service';
     MatNativeDateModule,
     MatListModule,
     MatCardModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [FoodsService],
   bootstrap: [AppComponent]

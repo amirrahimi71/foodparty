@@ -1,22 +1,27 @@
-<main class="container" *ngIf="!formVisible">
-  <button class="addBtn" mat-flat-button color="accent" (click)="onAddBtnClick()">Add Food</button>
+<main class="container">
+  <button routerLink="/add" class="addBtn" mat-flat-button color="accent">
+    Add new food
+  </button>
   <mat-list *ngFor="let food of foods">
-    <h3 mat-subheader>{{ food.dueDate | date }}</h3>
-    <mat-list-item (click)="setSelected(food)">
-      <p appSubmitted *ngIf="food.submitted; else unsubmitted">
-        food <strong>{{ food.name }}</strong> has been submitted!
-      </p>
+    <nav>
+      <a routerLink="/foods/{{ food.id }}">
+        <mat-list-item>
+          <p appSubmitted *ngIf="food.submitted; else unsubmitted">
+            food <strong>{{ food.name }}</strong> has been submitted!
+          </p>
 
-      <ng-template #unsubmitted>
-        <p>
-          food <strong>{{ food.name }}</strong> hasn't been submitted!
-        </p>
-      </ng-template>
-    </mat-list-item>
+          <ng-template #unsubmitted>
+            <p>
+              food <strong>{{ food.name }}</strong> hasn't been submitted!
+            </p>
+          </ng-template>
+        </mat-list-item>
+      </a>
+    </nav>
+    <h3 mat-subheader>{{ food.dueDate | date }}</h3>
+
     <mat-divider></mat-divider>
   </mat-list>
 </main>
 
-<app-add-food (newFood)="onNewFood($event);" *ngIf="formVisible"></app-add-food>
-<br>
-<app-food [passedFood]="selectedFood"></app-food>
+<!-- <app-food [passedFood]="selectedFood"></app-food> -->
