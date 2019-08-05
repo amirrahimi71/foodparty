@@ -24,6 +24,11 @@ export class FoodComponent implements OnInit {
       .subscribe(food => this.food = food);
   }
 
+  onClickEdit() {
+    this.router.navigate(['/foods' , this.food.id , 'edit'],
+      {queryParams : {name: this.food.name} , fragment: 'editing'});
+  }
+
   onSubmit() {
     setTimeout(() => {
       this.food.submitted = true;

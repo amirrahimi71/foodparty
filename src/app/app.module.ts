@@ -13,12 +13,15 @@ import { FoodComponent } from './features/foods/food/food.component';
 import { AddFoodComponent } from './features/foods/add-food/add-food.component';
 import { FoodsService } from './services/foods.service';
 import { Routes, RouterModule } from '@angular/router';
+import { EditFoodComponent } from './features/foods/edit-food/edit-food.component';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   {path: '' , component: FoodsComponent},
   {path: 'home' , component: FoodsComponent},
   {path: 'add' , component: AddFoodComponent},
-  {path: 'foods/:id' , component: FoodComponent}
+  {path: 'foods/:id' , component: FoodComponent},
+  {path: 'foods/:id/edit' , canActivate : [AuthGuard], component: EditFoodComponent}
 ];
 
 @NgModule({
@@ -27,7 +30,8 @@ const routes: Routes = [
     FoodsComponent,
     SubmittedDirective,
     FoodComponent,
-    AddFoodComponent
+    AddFoodComponent,
+    EditFoodComponent
   ],
   imports: [
     BrowserModule,

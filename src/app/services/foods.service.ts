@@ -33,7 +33,7 @@ export class FoodsService {
   }
 
   addFood(food: Food): Observable<string> {
-    food.id = Math.max.apply(Math , this.foods.map((food) => food.id)) + 1;
+    food.id = Math.max.apply(Math , this.foods.map((item) => item.id)) + 1;
 
     this.foods.push(food);
 
